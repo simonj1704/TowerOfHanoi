@@ -1,0 +1,1 @@
+// use 3 stacks for each rod and we push numbers on the the stacks where you cannot push a higher number on top of a lower number
