@@ -1,0 +1,14 @@
+.tower {
+  width: 150px;
+  height: 300px;
+  background-color: #f0f0f0;
+  position: relative;
+  display: inline-block;
+}
+
+.disk {
+  width: 100%;
+  background-color: #007bff;
+  position: absolute;
+  bottom: 0;
+}

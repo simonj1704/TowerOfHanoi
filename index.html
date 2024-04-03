@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css"> 
-</head>
-<body>
-    <h1>Tower of Hanoi</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tower of Hanoi</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 style="text-align: center;">Tower of Hanoi</h1>
 
-    
-
+      <div id="towers">
+        <div id="towerA" class="tower"></div>
+        <div id="towerB" class="tower"></div>
+        <div id="towerC" class="tower"></div>
+      </div>
+      <div id="controls">
+        <button id="reset">Reset</button>
+        <button id="solve">Solve</button>
+        <button id="hint">Hint</button>
+      </div>
+    <script src="model.js"></script>
+    <script src="view.js"></script>
     <script src="controller.js"></script>
-</body>
+  </body>
 </html>
