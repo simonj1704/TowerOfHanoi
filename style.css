@@ -6,12 +6,14 @@
   justify-content: center;
 }
 .tower {
-  width: 50px;
+  width: 20px;
   height: 300px;
   background-color: #f0f0f0;
   position: relative;
-  border: 1px solid black;
-  margin-left: 175px;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  margin-left: 250px;
 }
 
 .disc1, .disc2, .disc3, .disc4, .disc5, .disc6, .disc7, .disc8, .disc9 {
@@ -26,71 +28,72 @@
   width: 200px;
   background-color: #007bff;
   bottom: 20px;
-  left: -75px;
+  left: -90px;
 }
 
 .disc2 {
   width: 180px;
   background-color: #0cec44;
   bottom: 40px;
-  left: -65px;
+  left: -80px;
 }
 
 .disc3 {
   width: 160px;
   background-color: #ff1100;
   bottom: 60px;
-  left: -55px
+  left: -70px
 }
 
 .disc4 {
   width: 140px;
   background-color: #e5ff00;
   bottom: 80px;
-  left: -45px;
+  left: -60px;
 }
 
 .disc5 {
   width: 120px;
   background-color: #fa11a1;
   bottom: 100px;
-  left: -35px;
+  left: -50px;
 }
 
 .disc6 {
   width: 100px;
-  background-color: #ff1100;
+  background-color: #2a7013;
   bottom: 120px;
-  left: -25px;
+  left: -40px;
 }
 
 .disc7 {
   width: 80px;
-  background-color: #ff1100;
+  background-color: #8843e9;
   bottom: 140px;
-  left: -15px;
+  left: -30px;
 }
 
 .disc8 {
   width: 60px;
-  background-color: #ff1100;
+  background-color: #aa8104;
   bottom: 160px;
-  left: -5px;
+  left: -20px;
 }
 
 .disc9 {
   width: 40px;
-  background-color: #ff1100;
+  background-color: #00bbff;
   height: 20px;
   bottom: 180px;
-  left: 5px;
+  left: -10px;
 }
 
 .bottom {
   width: 220px;
   height: 20px;
-  background-color: #000;
+  background-color: #f0f0f0;
+  border: 1px solid black;
   position: absolute;
   bottom: 0;
-  left: -85px;
+  left: -100px;
 }
