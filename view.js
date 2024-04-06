@@ -1,21 +1,26 @@
 export default class View {
     constructor() {
         this.createTowers();
-        //this.makeBoardClickable();
+        this.makeBoardClickable();
     }
 
     makeBoardClickable(){
-        document.querySelector("#towers").addEventListener("mousedown", discClicked);
+        document.querySelector("#towers").addEventListener("mousedown", (event) => this.discClicked(event));
     }
 
     discClicked(event){
-        const disc = event.target;
-        console.log("Disc clicked")
-        
-        if(disc.classList.contains("disc")){
-            console.log(disc)
+        event.stopPropagation();
+        const disc = event.target.closest('.disc');
+        if(disc) {
+            const towerDiscs = Array.from(disc.parentNode.querySelectorAll('.disc:not(.bottom)'));
+            const topDisc = towerDiscs[0];
+            console.log("Disc clicked: " + disc.id);
+            if(disc === topDisc) {
+                console.log("Top Disc clicked: " + disc.id);
+            }
         }
     }
+    
 
     createTowers() {
         const towers = document.querySelector("#towers");
@@ -48,7 +53,9 @@ export default class View {
 
     createDisc(size){
         const disc = document.createElement("div")
+        disc.classList.add("disc");
         disc.classList.add("disc"+size)
+        disc.id = "disc" + size;
         console.log(disc)
         return disc
     }

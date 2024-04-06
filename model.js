@@ -29,7 +29,7 @@ export default class Model {
       
       if(this.towers[2].length === this.startSize){
         console.log("You have won")
-        //TODO remove click eventlisteners
+        document.querySelector("#towers").removeEventListener("mousedown", (event) => this.discClicked(event));
         return true
       } else {
         return false;

@@ -16,12 +16,14 @@
   margin-left: 250px;
 }
 
+
 .disc1, .disc2, .disc3, .disc4, .disc5, .disc6, .disc7, .disc8, .disc9 {
   position: absolute;
   margin: auto;
   left: 0;
   right: 0 ;
   height: 20px;
+  cursor: pointer;
 }
 
 .disc1 {
