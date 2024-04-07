@@ -7,7 +7,7 @@ window.addEventListener("load", start)
 
 function start(){
     const controller = new Controller();
-    console.log(controller.model.towers)
+    /* console.log(controller.model.towers)
     controller.model.moveDisc(0,1)
     controller.model.moveDisc(0,2)
     controller.model.moveDisc(2,1)
@@ -16,13 +16,13 @@ function start(){
     controller.model.moveDisc(1,2)
     controller.model.moveDisc(0,2)
     console.log(controller.model.towers[2])
-    console.log(controller.model.towers[0])
+    console.log(controller.model.towers[0]) */
 }
 
 class Controller {
   constructor() {
     this.model = new Model(9);
-    this.view = new View();
+    this.view = new View(this);
     this.gameStart()
   }
 
@@ -33,4 +33,11 @@ class Controller {
   displayData() {
     this.view.displayData(this.model.towers)
   } 
+
+  moveDisc(from, to){
+    console.log(from, to)
+    this.model.moveDisc(from, to)
+    console.log(this.model.towers)
+    this.displayData()
+  }
 }

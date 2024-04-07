@@ -1,24 +1,43 @@
 export default class View {
-    constructor() {
+    constructor(controller) {
         this.createTowers();
         this.makeBoardClickable();
+        this.controller = controller;
     }
 
     makeBoardClickable(){
         document.querySelector("#towers").addEventListener("mousedown", (event) => this.discClicked(event));
     }
 
+    discSelected = null;
+
     discClicked(event){
         event.stopPropagation();
         const disc = event.target.closest('.disc');
-        if(disc) {
+        if(this.discSelected !== null){
+            const clickedTower = event.target.closest(".tower").id;
+            const toTower = this.discSelected;
+            console.log(this.discSelected)
+            console.log(clickedTower)
+            this.discSelected = null;
+            this.moveDisc(toTower, clickedTower);
+
+        } else if(disc) {
             const towerDiscs = Array.from(disc.parentNode.querySelectorAll('.disc:not(.bottom)'));
             const topDisc = towerDiscs[0];
             console.log("Disc clicked: " + disc.id);
             if(disc === topDisc) {
                 console.log("Top Disc clicked: " + disc.id);
             }
+            topDisc.style = "border: 2px solid black;";
+            this.discSelected = event.target.closest('.tower').id;
         }
+
+    }
+
+    moveDisc(fromTower, toTower) {
+        this.controller.moveDisc(fromTower, toTower);
+        
     }
     
 
@@ -31,7 +50,7 @@ export default class View {
             
             bottom.classList.add("bottom");
             tower.classList.add("tower");
-            tower.id = "tower" + i;
+            tower.id = i;
             tower.appendChild(bottom);
             towers.appendChild(tower);
         }
@@ -40,6 +59,7 @@ export default class View {
 
     displayData(model){
         console.log("display")
+        document.querySelectorAll(".towers").forEach(tower => tower.innerHTML = "")
         const towers = document.querySelectorAll(".tower")
         for (let i = 0; i < towers.length; i++) {
             if(model[i].length !== 0){
