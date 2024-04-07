@@ -1,6 +1,6 @@
 export default class View {
     constructor(controller) {
-        this.createTowers();
+        
         this.makeBoardClickable();
         this.controller = controller;
     }
@@ -10,6 +10,7 @@ export default class View {
     }
 
     discSelected = null;
+    moveCounter = 0;
 
     discClicked(event){
         event.stopPropagation();
@@ -37,11 +38,13 @@ export default class View {
 
     moveDisc(fromTower, toTower) {
         this.controller.moveDisc(fromTower, toTower);
+        this.moveCounter++;
+        document.querySelector("#moveCounter").innerText = "Moves made: " + this.moveCounter;
+
         
     }
-    
-
-    createTowers() {
+     
+    /* createTowers() {
         const towers = document.querySelector("#towers");
         
         for(let i = 0; i < 3; i++) {
@@ -54,29 +57,51 @@ export default class View {
             tower.appendChild(bottom);
             towers.appendChild(tower);
         }
-    }
+    } */
     
+    createBottom(tower){
+        tower.innerHTML = ""
 
-    displayData(model){
-        console.log("display")
-        document.querySelectorAll(".towers").forEach(tower => tower.innerHTML = "")
-        const towers = document.querySelectorAll(".tower")
+        const bottom = document.createElement("div");
+            
+            bottom.classList.add("bottom");
+            tower.appendChild(bottom);
+
+            tower.classList.add("tower");
+    }
+
+    displayData(model) {
+        console.log("display");
+        document.querySelectorAll(".tower").forEach(tower => 
+            this.createBottom(tower)
+        );
+        
+        const towers = document.querySelectorAll(".tower");
         for (let i = 0; i < towers.length; i++) {
-            if(model[i].length !== 0){
+            if (model[i].length !== 0) {
                 for (let j = 0; j < model[i].length; j++) {
-                    towers[i].appendChild(this.createDisc(model[i][j]))
-                    
-                }   
+                    towers[i].appendChild(this.createDisc(model[i][j], model[i].length - j));
+                }
             }
         }
     }
-
-    createDisc(size){
-        const disc = document.createElement("div")
+    
+    createDisc(size, numberOfDiscs) {
+        const disc = document.createElement("div");
         disc.classList.add("disc");
-        disc.classList.add("disc"+size)
+        disc.classList.add("disc" + size);
         disc.id = "disc" + size;
-        console.log(disc)
-        return disc
+    
+        const bottomPosition = 20 * (numberOfDiscs);
+    
+        disc.style.bottom = bottomPosition + "px";
+    
+        return disc;
+    }
+
+    resetBoard() {
+        this.moveCounter = 0;
+        document.querySelector("#moveCounter").innerText = "";
+        this.controller.resetGame();
     }
 }

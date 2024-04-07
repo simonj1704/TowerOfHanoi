@@ -5,16 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tower of Hanoi</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
   </head>
   <body>
     <h1 style="text-align: center;">Tower of Hanoi</h1>
+    <p id="moveCounter">Moves made: 0</p>
     <div id="content">
       <div id="towers">
-      </div>
+          <div class="tower" id="0">
+            <div class="bottom" id="bottom1"></div>
+          </div>
+          <div class="tower" id="1">
+            <div class="bottom" id="bottom1"></div>
+          </div>
+          <div class="tower" id="2">
+            <div class="bottom" id="bottom1"></div>
+          </div>
       <div id="controls">
         <button id="reset">Reset</button>
         <button id="solve">Solve</button>
-        <button id="hint">Hint</button>
+        <input type="number" id="numDiscs" min="3" max="9" value="3"/>
+        <button id="start">Start</button> 
       </div>
     </div>
     <script src="controller.js" type="module"></script>

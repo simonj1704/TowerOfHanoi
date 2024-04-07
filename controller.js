@@ -7,27 +7,35 @@ window.addEventListener("load", start)
 
 function start(){
     const controller = new Controller();
-    /* console.log(controller.model.towers)
-    controller.model.moveDisc(0,1)
-    controller.model.moveDisc(0,2)
-    controller.model.moveDisc(2,1)
-    controller.model.moveDisc(0,2)
-    controller.model.moveDisc(1,0)
-    controller.model.moveDisc(1,2)
-    controller.model.moveDisc(0,2)
-    console.log(controller.model.towers[2])
-    console.log(controller.model.towers[0]) */
+    
 }
 
 class Controller {
   constructor() {
-    this.model = new Model(9);
+    this.model = new Model(document.querySelector("#numDiscs").value);
     this.view = new View(this);
     this.gameStart()
   }
 
   gameStart(){
+    const resetButton = document.getElementById("reset");
+    resetButton.addEventListener("click", () => {
+      this.resetGame();
+  });
+  document.getElementById("start").addEventListener("click", () => {
+    this.newModel(document.querySelector("#numDiscs").value);
+  });
     this.displayData()
+
+    document.querySelector("#solve").addEventListener("click", () => {
+      this.getSolution();
+    });
+  }
+
+  newModel(size){
+    this.model = new Model(size);
+    this.displayData()
+
   }
 
   displayData() {
@@ -39,5 +47,23 @@ class Controller {
     this.model.moveDisc(from, to)
     console.log(this.model.towers)
     this.displayData()
+  }
+
+  resetGame(){
+    this.view.moveCounter = 0;
+    document.querySelector("#moveCounter").innerText = "Moves made: " + this.view.moveCounter;
+    this.newModel(document.querySelector("#numDiscs").value);
+    this.displayData()
+  }
+
+  getSolution(){
+    this.model.solve(this.model.startSize, 0, 2, 1);
+    console.log(this.model.solution)
+    const solution = this.model.solution
+    solution.forEach((move, index) => {
+      setTimeout(() => {
+        this.moveDisc(move[0], move[1])
+      }, (index + 1) * 200);
+    });
   }
 }
