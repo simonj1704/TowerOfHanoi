@@ -47,6 +47,11 @@ class Controller {
     this.model.moveDisc(from, to)
     console.log(this.model.towers)
     this.displayData()
+    if(this.model.checkWin()){
+      this.view.winGame()
+    }
+
+    
   }
 
   resetGame(){
@@ -65,5 +70,14 @@ class Controller {
         this.moveDisc(move[0], move[1])
       }, (index + 1) * 200);
     });
+  }
+
+  displayMinimumMoves() {
+    const numberOfDiscsInput = document.getElementById("numDiscs");
+    const numberOfDiscs = parseInt(numberOfDiscsInput.value);
+
+    const minimumMoves = Math.pow(2, numberOfDiscs) - 1;
+
+    document.getElementById("minimumMoves").innerText = "Minimum moves: " + minimumMoves;
   }
 }

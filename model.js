@@ -18,7 +18,6 @@ export default class Model {
       if (toTower.length === 0 || fromTower[0] > toTower[0]) { // Tjekker om disken kan flyttes
         const disk = fromTower.shift();
         toTower.unshift(disk);
-        this.checkWin();
         return true;
       }
       console.log("Disc could not be Moved")
@@ -30,11 +29,15 @@ export default class Model {
       if(this.towers[2].length === this.startSize){
         console.log("You have won")
         document.querySelector("#towers").removeEventListener("mousedown", (event) => this.discClicked(event));
+        document.querySelector("#win-msg").innerText = "You have won"
+        this.win = true;
         return true
       } else {
         return false;
       }
     }
+
+    win=false;
 
     solve(n, from_rod, to_rod, aux_rod){
       if(n == 0){

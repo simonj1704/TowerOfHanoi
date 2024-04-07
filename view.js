@@ -9,6 +9,17 @@ export default class View {
         document.querySelector("#towers").addEventListener("mousedown", (event) => this.discClicked(event));
     }
 
+    boardUnclickable(){
+        console.log("Board unclickable")
+        document.querySelector("#towers").removeEventListener("mousedown", (event) => this.discClicked(event));
+    }
+
+    winGame(){
+        console.log("Win game")
+        this.boardUnclickable();
+        document.querySelector("#win-msg").innerText = "You won!";
+    }
+
     discSelected = null;
     moveCounter = 0;
 
