@@ -15,6 +15,7 @@ class Controller {
     this.model = new Model(document.querySelector("#numDiscs").value);
     this.view = new View(this);
     this.gameStart()
+    this.displayMinimumMoves();
   }
 
   gameStart(){
@@ -23,6 +24,7 @@ class Controller {
       this.resetGame();
   });
   document.getElementById("start").addEventListener("click", () => {
+    this.displayMinimumMoves();
     this.newModel(document.querySelector("#numDiscs").value);
   });
     this.displayData()
@@ -50,8 +52,6 @@ class Controller {
     if(this.model.checkWin()){
       this.view.winGame()
     }
-
-    
   }
 
   resetGame(){
@@ -68,6 +68,7 @@ class Controller {
     solution.forEach((move, index) => {
       setTimeout(() => {
         this.moveDisc(move[0], move[1])
+        this.view.incrementMoveCounter();
       }, (index + 1) * 200);
     });
   }
@@ -78,6 +79,6 @@ class Controller {
 
     const minimumMoves = Math.pow(2, numberOfDiscs) - 1;
 
-    document.getElementById("minimumMoves").innerText = "Minimum moves: " + minimumMoves;
+    document.getElementById("win-msg").innerText = "Minimum moves to solve: " + minimumMoves;
   }
 }

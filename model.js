@@ -4,6 +4,8 @@ export default class Model {
       this.startSize = parseInt(size)
     }
 
+    moveCounter;
+
     makeTowers(size){
       this.towers = [[],[],[]]
       for (let i = size; i > 0; i--){
@@ -28,8 +30,6 @@ export default class Model {
       console.log(this.towers[2].length, this.startSize)
       if(this.towers[2].length === this.startSize){
         console.log("You have won")
-        document.querySelector("#towers").removeEventListener("mousedown", (event) => this.discClicked(event));
-        document.querySelector("#win-msg").innerText = "You have won"
         this.win = true;
         return true
       } else {
@@ -51,20 +51,3 @@ export default class Model {
     solution = [];
     
   }
-
-/*   function towerOfHanoi(n, from_rod,  to_rod,  aux_rod) { 
-    if (n == 0) 
-    { 
-        return; 
-    } 
-    towerOfHanoi(n - 1, from_rod, aux_rod, to_rod); 
-    document.write("Move disk " + n + " from rod " + from_rod + 
-    " to rod " + to_rod+"<br/>"); 
-    towerOfHanoi(n - 1, aux_rod, to_rod, from_rod); 
-} 
-
-// Driver code 
-var N = 3; 
-  
-// A, B and C are names of rods 
-towerOfHanoi(N, 'A', 'C', 'B');  */

@@ -1,18 +1,19 @@
 export default class View {
     constructor(controller) {
-        
-        this.makeBoardClickable();
         this.controller = controller;
+        this.boundDiscClicked = this.discClicked.bind(this);
+        this.makeBoardClickable();
     }
-
-    makeBoardClickable(){
-        document.querySelector("#towers").addEventListener("mousedown", (event) => this.discClicked(event));
+    
+    makeBoardClickable() {
+        document.querySelector("#towers").addEventListener("mousedown", this.boundDiscClicked);
     }
-
-    boardUnclickable(){
-        console.log("Board unclickable")
-        document.querySelector("#towers").removeEventListener("mousedown", (event) => this.discClicked(event));
+    
+    boardUnclickable() {
+        console.log("Board unclickable");
+        document.querySelector("#towers").removeEventListener("mousedown", this.boundDiscClicked);
     }
+    
 
     winGame(){
         console.log("Win game")
@@ -54,21 +55,6 @@ export default class View {
 
         
     }
-     
-    /* createTowers() {
-        const towers = document.querySelector("#towers");
-        
-        for(let i = 0; i < 3; i++) {
-            const tower = document.createElement("div");
-            const bottom = document.createElement("div");
-            
-            bottom.classList.add("bottom");
-            tower.classList.add("tower");
-            tower.id = i;
-            tower.appendChild(bottom);
-            towers.appendChild(tower);
-        }
-    } */
     
     createBottom(tower){
         tower.innerHTML = ""
@@ -113,6 +99,11 @@ export default class View {
     resetBoard() {
         this.moveCounter = 0;
         document.querySelector("#moveCounter").innerText = "";
+        document.querySelector("#win-msg").innerText = "";
         this.controller.resetGame();
+    }
+
+    incrementMoveCounter() {
+        this.moveCounter++;
     }
 }
